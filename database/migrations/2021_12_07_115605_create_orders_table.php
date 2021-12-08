@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePaytemsTable extends Migration
+class CreateOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreatePaytemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('paytems', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('order_id');
-            $table->string('amount');
-            $table->string('txn_id');
-            $table->string('status');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('product_id')->constrained();
+            $table->foreignId('vendor_id')->constrained('products');
+            $table->integer('price');
             $table->timestamps();
- 
+	        $table->softDeletes();
         });
     }
 
@@ -31,6 +31,6 @@ class CreatePaytemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('paytems');
+        Schema::dropIfExists('orders');
     }
 }

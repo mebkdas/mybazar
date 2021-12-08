@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use App\Models\Admin\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use Whoops\Run;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +27,14 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::View('/admin','admin/mainpage');
-Route::View('/adminlogin','admin/login');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/user',[UserController::class,'userDataShow']);
+    Route::post('updateaccount',[UserController::class,'updateAccount']);    
+});
+
+
+
+Route::get('/logout',[UserController::class,'logout']);
 Route::middleware(['checkAuth'])->group(function(){
-   // Route::View('/admin','admin/mainpage');
+    Route::View('/admin','admin/mainpage');
 });

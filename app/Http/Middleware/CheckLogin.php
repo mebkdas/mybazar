@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class CheckAuth
+class CheckLogin
 {
     /**
      * Handle an incoming request.
@@ -15,9 +15,9 @@ class CheckAuth
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
-    {   //dd($request->session()->has('alfa'));
-        if (!$request->session()->has('alfa')) {
-            return redirect('/adminlogin');
+    {   //dd($request);
+        if($request->path()=="adminlogin" && $request->session()->has('alfa')){
+            return redirect('/admin');
         }
         return $next($request);
     }

@@ -44,11 +44,10 @@
 								@if (Route::has('login'))
 								@auth
 								<li class="menu-item menu-item-has-children parent" >
-									<a title="My Account" href="/">My Account ({{Auth::user()->name}})<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+									<p>My Account ({{Auth::user()->name}})<i class="fa fa-angle-down" aria-hidden="true"></i></p>
 									<ul class="submenu curency" >
 										<li class="menu-item"><a href="#">Orders</a></li>
-										<li class="menu-item"><a href="#">Address</a></li>
-										<li class="menu-item"><a href="#">Account Details</a></li>																														
+										<li class="menu-item"><a href="/user">Account Details</a></li>																														
 										<li class="menu-item" ><a title="Logout" href="href="{{ route('logout') }}"
 											onclick="event.preventDefault();
 											document.getElementById('logout-form').submit();">Logout</a></li>
