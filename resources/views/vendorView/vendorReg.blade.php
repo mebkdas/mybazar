@@ -4,12 +4,12 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('Vendor Register') }}</div>
 
                 <div class="card-body">
                     <form name="customer" method="POST" action="{{ route('register') }}">
                         @csrf
-                        <input id="role_id" type="hidden" class="form-control" name="role_id" readonly value="{{ 2 }}" required>
+                        <input id="role_id" type="hidden" class="form-control" name="role_id" readonly value="{{ 3 }}" required>
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 

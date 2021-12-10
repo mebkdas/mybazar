@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Required meta tags-->
     <meta charset="UTF-8">
@@ -9,79 +10,62 @@
     <meta name="keywords" content="au theme template">
 
     <!-- Title Page-->
-    <title>myBazar</title>
+    <title>@yield('title') | {{ config('app.name', 'MyBazar') }}</title>
 
-    <!-- Fontfaces CSS-->
-    <link href="{{asset('css/font-face.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
-
-    <!-- Bootstrap CSS-->
-    <link href="{{asset('vendor/bootstrap-4.1/bootstrap.min.css')}}" rel="stylesheet" media="all">
-
-    <!-- Vendor CSS-->
-    <link href="{{asset('vendor/animsition/animsition.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('vendor/wow/animate.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('vendor/css-hamburgers/hamburgers.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('vendor/slick/slick.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('vendor/select2/select2.min.css')}}" rel="stylesheet" media="all">
-    <link href="{{asset('vendor/perfect-scrollbar/perfect-scrollbar.css')}}" rel="stylesheet" media="all">
-
-    <!-- Main CSS-->
-    <link href="{{asset('css/theme.css')}}" rel="stylesheet" media="all">
+     <!-- Fontfaces CSS-->
+     <link href="{{asset('css/font-face.css')}}" rel="stylesheet" media="all">
+     <link href="{{asset('vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
+     <link href="{{asset('vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
+     <link href="{{asset('vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
+ 
+     <!-- Bootstrap CSS-->
+     <link href="{{asset('vendor/bootstrap-4.1/bootstrap.min.css')}}" rel="stylesheet" media="all">
+ 
+     <!-- Vendor CSS-->
+     <link href="{{asset('vendor/animsition/animsition.min.css')}}" rel="stylesheet" media="all">
+     <link href="{{asset('vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet" media="all">
+     <link href="{{asset('vendor/wow/animate.css')}}" rel="stylesheet" media="all">
+     <link href="{{asset('vendor/css-hamburgers/hamburgers.min.css')}}" rel="stylesheet" media="all">
+     <link href="{{asset('vendor/slick/slick.css')}}" rel="stylesheet" media="all">
+     <link href="{{asset('vendor/select2/select2.min.css')}}" rel="stylesheet" media="all">
+     <link href="{{asset('vendor/perfect-scrollbar/perfect-scrollbar.css')}}" rel="stylesheet" media="all">
+ 
+     <!-- Main CSS-->
+     <link href="{{asset('css/theme.css')}}" rel="stylesheet" media="all">
 
 </head>
-
 <body class="animsition">
     <div class="page-wrapper">
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
-                    <img src="https://mybazar.online/mybazar_online.png" alt="MyBazar Admin" />
-                </a>
+                    <img src="https://mybazar.online/mybazar_online.png" alt="MyBazar Vendor" />
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li class="has-sub">
                             <a class="js-arrow" href="#">
-                                <i class="fas fa-tachometer-alt"></i>Dashboard</a>
+                                <i class="fas fa-tachometer-alt"></i>Products</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                                 <li>
-                                    <a href="#">Dashboard 1</a>
+                                    <a href="index.html">View Product</a>
                                 </li>
                                 <li>
-                                    <a href="#">Dashboard 2</a>
-                                </li>
-                                <li>
-                                    <a href="#">Dashboard 3</a>
-                                </li>
-                                <li>
-                                    <a href="#">Dashboard 4</a>
+                                    <a href="index2.html">Add Product</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
                             <a href="chart.html">
-                                <i class="fas fa-chart-bar"></i>Products</a>
+                                <i class="fas fa-chart-bar"></i>Order</a>
                         </li>
-                        <li>
-                            <a href="table.html">
-                                <i class="fa fa-user"></i>Vendors</a>
-                        </li>
-                        <li class="">
-                            <a href="form.html">
-                                <i class="fa fa-users"></i>Users</a>
-                        </li>
-                        
                     </ul>
                 </nav>
             </div>
         </aside>
         <!-- END MENU SIDEBAR-->
+
         <!-- PAGE CONTAINER-->
         <div class="page-container">
             <!-- HEADER DESKTOP-->
@@ -211,23 +195,23 @@
                                 <div class="account-wrap">
                                     <div class="account-item clearfix js-item-menu">
                                         <div class="image">
-                                            <img src="https://avatars.githubusercontent.com/u/59800798?v=4" alt="John Doe" />
+                                            <img src="/storage/files/{{auth()->user()->profile_pic}}" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">Bijoy Kumar Das</a>
+                                            <a class="js-acc-btn" href="#">{{ auth()->user()->name }}</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
                                                     <a href="#">
-                                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                                        <img src="/storage/files/{{auth()->user()->profile_pic}}" alt="John Doe" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">Bijoy Kumar Das</a>
+                                                        <a href="#">{{ auth()->user()->name }}</a>
                                                     </h5>
-                                                    <span class="email">me.bkdas@gmail.com</span>
+                                                    <span class="email">{{ auth()->user()->email }}</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
@@ -245,8 +229,11 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="logout">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                                <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            <i class="zmdi zmdi-power"></i>Logout</a>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                            </form>        
                                             </div>
                                         </div>
                                     </div>
@@ -256,4 +243,40 @@
                     </div>
                 </div>
             </header>
-            <!-- HEADER DESKTOP-->
+            <!-- END HEADER DESKTOP-->
+
+            <!-- MAIN CONTENT-->
+            @yield('content')
+
+
+        </div>
+    </div>
+
+     <!-- Jquery JS-->
+ <script src="{{asset('vendor/jquery-3.2.1.min.js')}}"></script>
+ <!-- Bootstrap JS-->
+ <script src="{{asset('vendor/bootstrap-4.1/popper.min.js')}}"></script>
+ <script src="{{asset('vendor/bootstrap-4.1/bootstrap.min.js')}}"></script>
+ <!-- Vendor JS       -->
+ <script src="{{asset('vendor/slick/slick.min.js')}}">
+ </script>
+ <script src="{{asset('vendor/wow/wow.min.js')}}"></script>
+ <script src="{{asset('vendor/animsition/animsition.min.js')}}"></script>
+ <script src="{{asset('vendor/bootstrap-progressbar/bootstrap-progressbar.min.js')}}">
+ </script>
+ <script src="{{asset('vendor/counter-up/jquery.waypoints.min.js')}}"></script>
+ <script src="{{asset('vendor/counter-up/jquery.counterup.min.js')}}">
+ </script>
+ <script src="{{asset('vendor/circle-progress/circle-progress.min.js')}}"></script>
+ <script src="{{asset('vendor/perfect-scrollbar/perfect-scrollbar.js')}}"></script>
+ <script src="{{asset('vendor/chartjs/Chart.bundle.min.js')}}"></script>
+ <script src="{{asset('vendor/select2/select2.min.js')}}">
+ </script>
+
+ <!-- Main JS-->
+ <script src="{{asset('js/main.js')}}"></script>
+
+</body>
+
+</html>
+<!-- end document-->

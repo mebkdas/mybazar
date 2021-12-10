@@ -1,5 +1,6 @@
-@include('layouts.header')
-<!--main area-->
+@extends('layouts.customer')
+@section('title', 'Login')
+@section('content')
 <main id="main" class="main-site left-sidebar">
 
     <div class="container">
@@ -17,6 +18,7 @@
                         <div class="login-form form-item form-stl">
                             <form name="frm-login" method="POST" action="{{ route('login') }}">
                                 @csrf
+                                <input id="role_id" type="hidden" class="form-control" name="role_id" readonly value="{{ 1 }}" required>
                                 <fieldset class="wrap-title">
                                     <h3 class="form-title">Log in to your account</h3>										
                                 </fieldset>
@@ -66,4 +68,4 @@
     </div><!--end container-->
 
 </main>
-<!--main area-->
+@endsection

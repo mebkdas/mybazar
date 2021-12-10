@@ -15,11 +15,13 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('vendor_id');
-            $table->integer('price');
+            $table->foreignId('user_id')->constrained();
+            $table->foreignId('product_id')->constrained();
+            $table->foreignId('vendor_id')->constrained('products');
+            $table->float('price', 8, 2);
+            $table->enum('status', ['Pending', 'Completed', 'Cancelled']);
             $table->timestamps();
+	        $table->softDeletes();
         });
     }
 

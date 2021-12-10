@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductCategoriesTable extends Migration
+class CreatePaytemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateProductCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_categories', function (Blueprint $table) {
+        Schema::create('paytems', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('status');
+            $table->foreignId('order_id')->constrained();
+            $table->float('price', 8, 2);
+            $table->string('txn_id');
+            $table->enum('status', ['Paid', 'Failed', 'Cancelled']);
             $table->timestamps();
+	        $table->softDeletes();
         });
     }
 
@@ -28,6 +31,6 @@ class CreateProductCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_categories');
+        Schema::dropIfExists('paytems');
     }
 }
