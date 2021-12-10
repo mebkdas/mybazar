@@ -16,9 +16,9 @@ class CreatePaytemsTable extends Migration
         Schema::create('paytems', function (Blueprint $table) {
             $table->id();
             $table->foreignId('order_id')->constrained();
-            $table->string('amount');
+            $table->float('price', 8, 2);
             $table->string('txn_id');
-            $table->string('status');
+            $table->enum('status', ['Paid', 'Failed', 'Cancelled']);
             $table->timestamps();
 	        $table->softDeletes();
         });

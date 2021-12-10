@@ -27,8 +27,8 @@ class CreateUsersTable extends Migration
                 $table->string('state_id')->nullable();
                 $table->string('zip_code')->nullable();
                 $table->string('profile_pic')->nullable();
-                $table->string('status')->nullable();
-                $table->foreignId('role_id')->constrained();
+                $table->enum('status', ['Active', 'Inactive'])->default('Inactive');
+                $table->foreignId('role_id')->constrained()->default("1"); 
                 $table->rememberToken();
                 $table->timestamps();
                 $table->softDeletes();

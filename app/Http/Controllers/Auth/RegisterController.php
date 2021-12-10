@@ -29,8 +29,15 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
+    //protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/';
+    protected function redirectTo()
+    {
+        if (auth()->user()->role_id == 3) {
+            return '/vendorUser';
+        }
+        return '/';
+    }
     /**
      * Create a new controller instance.
      *
@@ -63,11 +70,16 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    {
+    {   //dd($data);
+        if($data['role_id'] == 2 || $data['role_id'] == 3){
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'role_id' => $data['role_id'],
             'password' => Hash::make($data['password']),
         ]);
     }
+       dd('invalid input');
+ }
+
 }

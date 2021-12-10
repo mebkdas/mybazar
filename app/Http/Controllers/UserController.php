@@ -6,9 +6,26 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {   
+    public function viewDashboard(){
+        if(auth()->user()){
+        if (Auth::user()->role->name == 'admin') {
+            $this->redirectTo = route('admin.dashboard');
+        } elseif(Auth::user()->role->name == 'customer') {
+             return view('home');
+        } elseif(Auth::user()->role->name == 'vendor') {
+            $this->redirectTo = route('vendorUser.dashboard');
+        }        
+        }
+        else {
+             return view('home');
+        }
+        return redirect($this->redirectTo);
+    }
+
     //Customer
     public function userDataShow(){
         $id = auth()->user()->id;
@@ -52,6 +69,8 @@ class UserController extends Controller
 
     }
 
+
+    
 
     //Admin    
     public function adminLogin(Request $req){

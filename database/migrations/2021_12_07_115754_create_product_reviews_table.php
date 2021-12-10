@@ -17,7 +17,7 @@ class CreateProductReviewsTable extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained();
             $table->string('rating');
-            $table->string('review');
+            $table->string('review')->nullable();
             $table->timestamps();
     	    $table->softDeletes();
         });

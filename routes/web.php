@@ -1,40 +1,46 @@
 <?php
 
 use App\Http\Controllers\UserController;
-use App\Models\Admin\User;
+use App\Http\Controllers\VendorController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use Whoops\Run;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
-Route::get('/', function () {
-    //return view('welcome');
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('home');
+// })->name('dashboard');
+
+Route::get('/',[UserController::class,'viewDashboard'])->name('dashboard');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-Route::middleware(['auth'])->group(function () {
+Route::middleware('auth')->group(function () {
+    //customer route
+    Route::middleware('role:customer')->group(function () {
     Route::get('/user',[UserController::class,'userDataShow']);
-    Route::post('updateaccount',[UserController::class,'updateAccount']);    
+    Route::post('updateaccount',[UserController::class,'updateAccount']);
+    });
+    
+    
+    // Admin routes
+    Route::prefix('admin/')->name('admin.')->group(function() {
+        Route::get('dashboard', [\App\Http\Controllers\AdminController::class, 'dashboard'])->name('dashboard');
+    });
+
+
+    // Vendor routes
+    Route::middleware('role:vendor')->group(function () {
+        Route::prefix('vendorUser/')->name('vendorUser.')->group(function() {
+        Route::get('dashboard', [VendorController::class, 'dashboard'])->name('dashboard');
+    });
+    
+    });
 });
 
 
 
-Route::get('/logout',[UserController::class,'logout']);
-Route::middleware(['checkAuth'])->group(function(){
-    Route::View('/admin','admin/mainpage');
-});
+
+
+Route::View('/vendorReg','vendorView/vendorReg');
+Route::View('/admin','admin/mainpage');
+

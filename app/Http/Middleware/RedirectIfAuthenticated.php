@@ -23,7 +23,17 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                if (Auth::user()->role->name == 'admin') {
+                    $this->redirectTo = route('admin.dashboard');
+                } elseif(Auth::user()->role->name == 'customer') {
+                    $this->redirectTo = route('dashboard');
+                } elseif(Auth::user()->role->name == 'vendor') {
+                    $this->redirectTo = route('vendorUser.dashboard');
+                } else {
+                    Auth::logout();
+                    $this->redirectTo = route('login');
+                }
+                return redirect($this->redirectTo);
             }
         }
 

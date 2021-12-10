@@ -1,5 +1,6 @@
-@include('layouts.header')
-
+@extends('layouts.customer')
+@section('title', 'Home')
+@section('content')
 <main id="main">
     <div class="container">
         <!--MAIN SLIDE-->
@@ -883,7 +884,5 @@
         </div>			
 
     </div>
-
 </main>
-
-@include('layouts.footer')
+@endsection

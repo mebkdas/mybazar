@@ -18,7 +18,8 @@ class CreateOrdersTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('product_id')->constrained();
             $table->foreignId('vendor_id')->constrained('products');
-            $table->integer('price');
+            $table->float('price', 8, 2);
+            $table->enum('status', ['Pending', 'Completed', 'Cancelled']);
             $table->timestamps();
 	        $table->softDeletes();
         });
